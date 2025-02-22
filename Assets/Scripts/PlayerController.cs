@@ -24,14 +24,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Ground")
+        {
+            onGround = true;
+        }
+    }
+
     public void MovePlayer(Vector3 input)
     {
         Vector3 inputDirection = transform.forward * input.z + transform.right * input.x;
-        rb.AddForce(inputDirection * playerSpeed,  ForceMode.Acceleration);
 
-        // if (input.y > 0 && onGround)
-        // {
-        //     rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        // }
+        if(input.y > 0 && onGround)
+        {
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            onGround = false;
+        }
+
+        rb.AddForce(inputDirection * playerSpeed, ForceMode.Acceleration);
     }
 }
