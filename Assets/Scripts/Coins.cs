@@ -10,11 +10,11 @@ public class Coins : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // GameManager.Instance.AddScore(scoreValue);
             OnCoinCollected.Invoke();
             Destroy(gameObject);
         }
     }
+    
     void Update()
     {
         transform.Rotate(Vector3.up, speed * Time.deltaTime);

@@ -7,12 +7,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputManager inputManager;
     private Rigidbody rb;
     public float playerSpeed = 2f;
-    public float rotationSpeed = 20f;
     public float jumpHeight = 4f;
     private int jumpCount = 0;
     private int maxJumps = 2; 
     private float dashMultiplier = 1.0005f;
     private float dashDuration = 0.5f;
+    public Transform cameraTransform;
 
     private void Start()
     {
@@ -22,12 +22,6 @@ public class PlayerController : MonoBehaviour
         inputManager.OnMove.AddListener(MovePlayer);
         inputManager.OnJump.AddListener(Jump);
         inputManager.OnDash.AddListener(Dash);
-    }
-
-    void Update()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.up, mouseX);
     }
 
     void Dash()
@@ -63,8 +57,13 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Vector3 input)
     {
-        Vector3 inputDirection = transform.forward * input.z + transform.right * input.x;
-        rb.AddForce(inputDirection * playerSpeed, ForceMode.Acceleration);
-        // Debug.Log("Speed: " + playerSpeed);
+        Vector3 cameraForward = cameraTransform.forward;
+        cameraForward.y = 0;
+
+        Vector3 cameraRight = cameraTransform.right;
+        cameraRight.y = 0;
+
+        Vector3 inputDirection = cameraForward * input.z + cameraRight * input.x;
+        rb.AddForce(inputDirection.normalized * playerSpeed, ForceMode.Acceleration);
     }
 }
