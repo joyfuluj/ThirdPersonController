@@ -65,6 +65,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 inputDirection = transform.forward * input.z + transform.right * input.x;
         rb.AddForce(inputDirection * playerSpeed, ForceMode.Acceleration);
-        Debug.Log("Speed: " + playerSpeed);
+        // Debug.Log("Speed: " + playerSpeed);
     }
 }
