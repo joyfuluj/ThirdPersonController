@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 808731358}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1318,6 +1318,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDash:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &828985266
@@ -2392,7 +2395,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517345105}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3aa81c349c3ff4e68944645bf783ceaa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
