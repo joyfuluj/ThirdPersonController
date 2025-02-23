@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Ground")
+        if(collision.gameObject.name == "Ground" || collision.gameObject.CompareTag("Box"))
         {
             onGround = true;
         }
