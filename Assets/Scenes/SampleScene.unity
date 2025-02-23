@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 808731358}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   OnMove:
     m_PersistentCalls:
       m_Calls: []
-  OnLook:
+  OnJump:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &828985266
@@ -2358,7 +2358,6 @@ MonoBehaviour:
   playerSpeed: 2
   rotationSpeed: 300
   jumpHeight: 4
-  onGround: 0
 --- !u!54 &1517345108
 Rigidbody:
   m_ObjectHideFlags: 0
