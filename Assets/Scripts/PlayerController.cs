@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 4f;
     private int jumpCount = 0;
     private int maxJumps = 2; 
-    private float dashMultiplier = 1.0005f;
+    private float dashMultiplier = 1.5f;
     private float dashDuration = 0.5f;
+    float originalSpeed = 2f;
     public Transform cameraTransform;
 
     private void Start()
@@ -24,6 +26,12 @@ public class PlayerController : MonoBehaviour
         inputManager.OnDash.AddListener(Dash);
     }
 
+    void Update()
+    {
+        transform.forward = cameraTransform.transform.forward;
+        transform.rotation = Quaternion.Euler(0,transform.rotation.eulerAngles.y,0);
+    }
+
     void Dash()
     {
         StartCoroutine(DashCoroutine());
@@ -31,10 +39,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashCoroutine()
     {
-        float originalSpeed = playerSpeed;
+        originalSpeed = playerSpeed;
         playerSpeed *= dashMultiplier;
         yield return new WaitForSeconds(dashDuration);
-        playerSpeed = originalSpeed;
     }
 
     void Jump()
@@ -65,5 +72,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDirection = cameraForward * input.z + cameraRight * input.x;
         rb.AddForce(inputDirection.normalized * playerSpeed, ForceMode.Acceleration);
+        Debug.Log("Player Speed: " + playerSpeed);
+        playerSpeed = originalSpeed;
+
     }
 }
