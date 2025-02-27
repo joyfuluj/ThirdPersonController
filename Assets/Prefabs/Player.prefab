@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2324493956564601377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.62, y: 0.56, z: -0.74}
+  m_LocalPosition: {x: 6.62, y: 0.701, z: -0.74}
   m_LocalScale: {x: 0.5669, y: 0.5669, z: 0.5669}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51,6 +51,7 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   playerSpeed: 2
   jumpHeight: 3
+  airForce: 1.5
   cameraTransform: {fileID: 0}
 --- !u!54 &5405006705639207715
 Rigidbody:
@@ -130,8 +131,8 @@ Transform:
   m_GameObject: {fileID: 3979034240539181280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.055, y: -0.191, z: 0.17}
-  m_LocalScale: {x: 1.0612687, y: 1.0612687, z: 0.7813697}
+  m_LocalPosition: {x: -0.055, y: -0.2, z: 0.17}
+  m_LocalScale: {x: 1.0612687, y: 0.9949394, z: 0.7813697}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3753359996890395446}

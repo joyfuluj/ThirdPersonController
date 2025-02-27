@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     private Rigidbody rb;
-    public float playerSpeed = 2f;
-    public float jumpHeight = 4f;
+    public float playerSpeed = 3f;
+    public float jumpHeight = 3f;
     private int jumpCount = 0;
+    public float airForce = 1.5f;
     private int maxJumps = 2; 
     private float dashMultiplier = 1.5f;
     private float dashDuration = 0.5f;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
         originalSpeed = playerSpeed;
         playerSpeed *= dashMultiplier;
         yield return new WaitForSeconds(dashDuration);
+        playerSpeed = originalSpeed;
     }
 
     void Jump()
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Box"))
         {
             jumpCount = 0;
+            // rb.linearVelocity = Vector3.zero;
+            Debug.Log("OnGround!!");
         }
     }
 
@@ -72,6 +76,12 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDirection = cameraForward * input.z + cameraRight * input.x;
         rb.AddForce(inputDirection.normalized * playerSpeed, ForceMode.Acceleration);
+
+        if (jumpCount > 0 && input.z > 0)
+        {
+            rb.AddForce(Vector3.up * airForce, ForceMode.Acceleration);
+        }
+
         Debug.Log("Player Speed: " + playerSpeed);
         playerSpeed = originalSpeed;
 
